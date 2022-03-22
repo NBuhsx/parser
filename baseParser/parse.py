@@ -1,3 +1,7 @@
+from re import I
+
+
+import sys
 import requests
 
 from abc import ABC, abstractclassmethod
@@ -8,8 +12,8 @@ from typing import Callable, Union
 
 
 class Parse:
-    def __init__(self, config:dataclass):
-        self.config = config
+    # def __init__(self, config:dataclass):
+    #     self.config = config
     
     
     @staticmethod
@@ -22,8 +26,10 @@ class Parse:
         )
         
     @staticmethod
-    def check(func:Callable, *args, **kwargs):
+    def check(func:Callable, logger:object, **kwargs):
+        logger.info("Программа стартует")
         try:
-            return func(*args, **kwargs)
-        except:
-            return None
+            return func(**kwargs)
+        except Exception as err:
+            logger.exception(err)
+            sys.exit()

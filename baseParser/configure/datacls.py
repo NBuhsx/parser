@@ -13,7 +13,7 @@ class settinngSystem:
     use_proxy:bool = False
     pathFileProxy:str = os.path.dirname(__file__) + r'\proxy\Use.txt'
     logging: bool = True
-    pathFileLogging:str = os.path.dirname(__file__) + f'\logging\log_{datetime.now().strftime("%d-%m-%Y %H:%M")}.txt'
+    pathFileLogging:str = os.path.dirname(__file__) + f'\logging\log_{datetime.now().strftime("%d-%m-%Y %H.%M")}.log'
 
 
 @dataclass

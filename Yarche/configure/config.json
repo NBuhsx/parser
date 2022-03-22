@@ -5,7 +5,7 @@
         "use_proxy": false,
         "pathFileProxy": "c:/Users/ole lukoie/Desktop/my_parser/Yarche/proxy/use.txt",
         "logging": true,
-        "pathFileLogging": "c:/Users/ole lukoie/Desktop/my_parser/Yarche/logging/log_20-03-2022 15:48.txt"
+        "pathFileLogging": "c:/Users/ole lukoie/Desktop/my_parser/Yarche/logs/log_20-03-2022 15.48.log"
         
     },
     "Parser": {
