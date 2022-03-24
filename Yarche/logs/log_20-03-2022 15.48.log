@@ -1,1 +1,231 @@
-Сатана
+
+2022-03-23 08:56:33,025 - [INFO] - __main__ - (main.py).main(32) - Сатана
+2022-03-23 09:13:39,540 - [INFO] - __main__ - (main.py).main(32) - Создан лог файл
+2022-03-23 09:14:51,286 - [INFO] - __main__ - (main.py).main(32) - Создан лог файл
+2022-03-23 09:15:04,790 - [INFO] - __main__ - (main.py).main(32) - Создан лог файл
+2022-03-23 09:20:28,680 - [INFO] - __main__ - (main.py).main(34) - Создан лог файл
+2022-03-23 21:06:20,212 |     INFO | Создан лог файл
+2022-03-23 21:12:12,330 |     INFO | Создан лог файл
+2022-03-23 21:13:52,009 |     INFO | Создан лог файл
+2022-03-23 21:14:28,751 |     INFO | Создан лог файл
+2022-03-23 22:01:15,765 |     INFO | Создан лог файл
+2022-03-23 22:01:41,965 |     INFO | Создан лог файл
+2022-03-24 00:05:35,039 |     INFO | Создан лог файл
+2022-03-24 00:09:02,259 |     INFO | Создан лог файл
+2022-03-24 01:13:01,145 |    ERROR | 'Parser' object has no attribute 'header'
+Traceback (most recent call last):
+  File "c:\Users\ole lukoie\Desktop\my_parser\baseParser\control.py", line 8, in check
+    return func(**kwargs)
+  File "c:/Users/ole lukoie/Desktop/my_parser/Yarche/main.py", line 86, in main
+    header=config.prod.header,
+AttributeError: 'Parser' object has no attribute 'header'
+2022-03-24 01:13:12,412 |    ERROR | get_session() got an unexpected keyword argument 'header'
+Traceback (most recent call last):
+  File "c:\Users\ole lukoie\Desktop\my_parser\baseParser\control.py", line 8, in check
+    return func(**kwargs)
+  File "c:/Users/ole lukoie/Desktop/my_parser/Yarche/main.py", line 87, in main
+    proxy=proxy.get_proxy
+TypeError: get_session() got an unexpected keyword argument 'header'
+2022-03-24 01:13:26,270 |    ERROR | 'function' object has no attribute 'get'
+Traceback (most recent call last):
+  File "c:\Users\ole lukoie\Desktop\my_parser\baseParser\control.py", line 8, in check
+    return func(**kwargs)
+  File "c:/Users/ole lukoie/Desktop/my_parser/Yarche/main.py", line 87, in main
+    proxy=proxy.get_proxy
+  File "c:\Users\ole lukoie\Desktop\my_parser\baseParser\parse.py", line 17, in get_session
+    proxies=proxy
+  File "C:\python3.7\lib\site-packages\requests\sessions.py", line 555, in get
+    return self.request('GET', url, **kwargs)
+  File "C:\python3.7\lib\site-packages\requests\sessions.py", line 533, in request
+    prep.url, proxies, stream, verify, cert
+  File "C:\python3.7\lib\site-packages\requests\sessions.py", line 710, in merge_environment_settings
+    no_proxy = proxies.get('no_proxy') if proxies is not None else None
+AttributeError: 'function' object has no attribute 'get'
+2022-03-24 01:15:27,132 |    ERROR | 'function' object has no attribute 'get'
+Traceback (most recent call last):
+  File "c:\Users\ole lukoie\Desktop\my_parser\baseParser\control.py", line 8, in check
+    return func(**kwargs)
+  File "c:/Users/ole lukoie/Desktop/my_parser/Yarche/main.py", line 87, in main
+    proxy=proxy.get_proxy
+  File "c:\Users\ole lukoie\Desktop\my_parser\baseParser\parse.py", line 18, in get_session
+    proxies=proxy
+  File "C:\python3.7\lib\site-packages\requests\sessions.py", line 555, in get
+    return self.request('GET', url, **kwargs)
+  File "C:\python3.7\lib\site-packages\requests\sessions.py", line 533, in request
+    prep.url, proxies, stream, verify, cert
+  File "C:\python3.7\lib\site-packages\requests\sessions.py", line 710, in merge_environment_settings
+    no_proxy = proxies.get('no_proxy') if proxies is not None else None
+AttributeError: 'function' object has no attribute 'get'
+2022-03-24 01:15:43,497 |    ERROR | No connection adapters were found for "Parser(project_name='Ярче', base_url='https://yarcheplus.ru', cookies={})"
+Traceback (most recent call last):
+  File "c:\Users\ole lukoie\Desktop\my_parser\baseParser\control.py", line 8, in check
+    return func(**kwargs)
+  File "c:/Users/ole lukoie/Desktop/my_parser/Yarche/main.py", line 87, in main
+    proxy=proxy.get_proxy()
+  File "c:\Users\ole lukoie\Desktop\my_parser\baseParser\parse.py", line 18, in get_session
+    proxies=proxy
+  File "C:\python3.7\lib\site-packages\requests\sessions.py", line 555, in get
+    return self.request('GET', url, **kwargs)
+  File "C:\python3.7\lib\site-packages\requests\sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\python3.7\lib\site-packages\requests\sessions.py", line 649, in send
+    adapter = self.get_adapter(url=request.url)
+  File "C:\python3.7\lib\site-packages\requests\sessions.py", line 742, in get_adapter
+    raise InvalidSchema("No connection adapters were found for {!r}".format(url))
+requests.exceptions.InvalidSchema: No connection adapters were found for "Parser(project_name='Ярче', base_url='https://yarcheplus.ru', cookies={})"
+2022-03-24 11:38:50,472 |    ERROR | expected string or bytes-like object
+Traceback (most recent call last):
+  File "c:\Users\ole lukoie\Desktop\my_parser\baseParser\control.py", line 8, in check
+    return func(**kwargs)
+  File "c:/Users/ole lukoie/Desktop/my_parser/Yarche/main.py", line 71, in main
+    resptext=session.response
+  File "c:\Users\ole lukoie\Desktop\my_parser\Yarche\buld.py", line 37, in get_json_from_html
+    string=script
+  File "C:\python3.7\lib\re.py", line 223, in findall
+    return _compile(pattern, flags).findall(string)
+TypeError: expected string or bytes-like object
+2022-03-24 14:38:12,365 |    ERROR | HTTPSConnectionPool(host='yarcheplus.ru', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1076)')))
+Traceback (most recent call last):
+  File "C:\python3.7\lib\site-packages\urllib3\connectionpool.py", line 706, in urlopen
+    chunked=chunked,
+  File "C:\python3.7\lib\site-packages\urllib3\connectionpool.py", line 382, in _make_request
+    self._validate_conn(conn)
+  File "C:\python3.7\lib\site-packages\urllib3\connectionpool.py", line 1010, in _validate_conn
+    conn.connect()
+  File "C:\python3.7\lib\site-packages\urllib3\connection.py", line 426, in connect
+    tls_in_tls=tls_in_tls,
+  File "C:\python3.7\lib\site-packages\urllib3\util\ssl_.py", line 450, in ssl_wrap_socket
+    sock, context, tls_in_tls, server_hostname=server_hostname
+  File "C:\python3.7\lib\site-packages\urllib3\util\ssl_.py", line 493, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "C:\python3.7\lib\ssl.py", line 423, in wrap_socket
+    session=session
+  File "C:\python3.7\lib\ssl.py", line 870, in _create
+    self.do_handshake()
+  File "C:\python3.7\lib\ssl.py", line 1139, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1076)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\python3.7\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "C:\python3.7\lib\site-packages\urllib3\connectionpool.py", line 756, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "C:\python3.7\lib\site-packages\urllib3\util\retry.py", line 574, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='yarcheplus.ru', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1076)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\ole lukoie\Desktop\my_parser\baseParser\control.py", line 8, in check
+    return func(**kwargs)
+  File "c:/Users/ole lukoie/Desktop/my_parser/Yarche/main.py", line 67, in main
+    proxy=proxy.get_proxy()
+  File "c:\Users\ole lukoie\Desktop\my_parser\baseParser\parse.py", line 18, in get_session
+    proxies=proxy)
+  File "C:\python3.7\lib\site-packages\requests\sessions.py", line 555, in get
+    return self.request('GET', url, **kwargs)
+  File "C:\python3.7\lib\site-packages\requests\sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\python3.7\lib\site-packages\requests\sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\python3.7\lib\site-packages\requests\adapters.py", line 514, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='yarcheplus.ru', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1076)')))
+2022-03-24 14:41:57,087 |    ERROR | HTTPSConnectionPool(host='yarcheplus.ru', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1076)')))
+Traceback (most recent call last):
+  File "C:\python3.7\lib\site-packages\urllib3\connectionpool.py", line 706, in urlopen
+    chunked=chunked,
+  File "C:\python3.7\lib\site-packages\urllib3\connectionpool.py", line 382, in _make_request
+    self._validate_conn(conn)
+  File "C:\python3.7\lib\site-packages\urllib3\connectionpool.py", line 1010, in _validate_conn
+    conn.connect()
+  File "C:\python3.7\lib\site-packages\urllib3\connection.py", line 426, in connect
+    tls_in_tls=tls_in_tls,
+  File "C:\python3.7\lib\site-packages\urllib3\util\ssl_.py", line 450, in ssl_wrap_socket
+    sock, context, tls_in_tls, server_hostname=server_hostname
+  File "C:\python3.7\lib\site-packages\urllib3\util\ssl_.py", line 493, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "C:\python3.7\lib\ssl.py", line 423, in wrap_socket
+    session=session
+  File "C:\python3.7\lib\ssl.py", line 870, in _create
+    self.do_handshake()
+  File "C:\python3.7\lib\ssl.py", line 1139, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1076)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\python3.7\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "C:\python3.7\lib\site-packages\urllib3\connectionpool.py", line 756, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "C:\python3.7\lib\site-packages\urllib3\util\retry.py", line 574, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='yarcheplus.ru', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1076)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\ole lukoie\Desktop\my_parser\baseParser\control.py", line 8, in check
+    return func(**kwargs)
+  File "c:/Users/ole lukoie/Desktop/my_parser/Yarche/main.py", line 67, in main
+    proxy=proxy.get_proxy()
+  File "c:\Users\ole lukoie\Desktop\my_parser\baseParser\parse.py", line 18, in get_session
+    proxies=proxy)
+  File "C:\python3.7\lib\site-packages\requests\sessions.py", line 555, in get
+    return self.request('GET', url, **kwargs)
+  File "C:\python3.7\lib\site-packages\requests\sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\python3.7\lib\site-packages\requests\sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\python3.7\lib\site-packages\requests\adapters.py", line 514, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='yarcheplus.ru', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1076)')))
+2022-03-24 14:58:13,615 |    ERROR | get() missing 1 required positional argument: 'key'
+Traceback (most recent call last):
+  File "c:\Users\ole lukoie\Desktop\my_parser\baseParser\control.py", line 8, in check
+    return func(**kwargs)
+  File "c:/Users/ole lukoie/Desktop/my_parser/Yarche/main.py", line 71, in main
+    resptext=session.response
+  File "c:\Users\ole lukoie\Desktop\my_parser\Yarche\buld.py", line 33, in get_json_from_html
+    print(script.get())
+TypeError: get() missing 1 required positional argument: 'key'
+2022-03-24 15:04:25,335 |    ERROR | 'NoneType' object has no attribute 'text'
+Traceback (most recent call last):
+  File "c:\Users\ole lukoie\Desktop\my_parser\baseParser\control.py", line 8, in check
+    return func(**kwargs)
+  File "c:/Users/ole lukoie/Desktop/my_parser/Yarche/main.py", line 71, in main
+    resptext=session.response
+  File "c:\Users\ole lukoie\Desktop\my_parser\Yarche\buld.py", line 35, in get_json_from_html
+    print(script.text)
+AttributeError: 'NoneType' object has no attribute 'text'
+2022-03-24 15:05:15,584 |    ERROR | 'NoneType' object has no attribute 'text'
+Traceback (most recent call last):
+  File "c:\Users\ole lukoie\Desktop\my_parser\baseParser\control.py", line 8, in check
+    return func(**kwargs)
+  File "c:/Users/ole lukoie/Desktop/my_parser/Yarche/main.py", line 71, in main
+    resptext=session.response
+  File "c:\Users\ole lukoie\Desktop\my_parser\Yarche\buld.py", line 35, in get_json_from_html
+    print(script.text)
+AttributeError: 'NoneType' object has no attribute 'text'
+2022-03-24 15:05:50,740 |    ERROR | 'NoneType' object has no attribute 'text'
+Traceback (most recent call last):
+  File "c:\Users\ole lukoie\Desktop\my_parser\baseParser\control.py", line 8, in check
+    return func(**kwargs)
+  File "c:/Users/ole lukoie/Desktop/my_parser/Yarche/main.py", line 71, in main
+    resptext=session.response
+  File "c:\Users\ole lukoie\Desktop\my_parser\Yarche\buld.py", line 35, in get_json_from_html
+    print(script.text)
+AttributeError: 'NoneType' object has no attribute 'text'
+2022-03-24 15:09:15,340 |    ERROR | get_json_from_html() got an unexpected keyword argument 'resptext'
+Traceback (most recent call last):
+  File "c:\Users\ole lukoie\Desktop\my_parser\baseParser\control.py", line 8, in check
+    return func(**kwargs)
+  File "c:/Users/ole lukoie/Desktop/my_parser/Yarche/main.py", line 71, in main
+    resptext=session.response
+TypeError: get_json_from_html() got an unexpected keyword argument 'resptext'

@@ -5,59 +5,73 @@ import logging
 import os.path, sys
 
 from baseParser.logger.app_loggers import get_logger, get_file_handler, get_stream_handler
-from baseParser.configure.base_config import parse_config, write_config
-from baseParser.parse import Parse
+from baseParser.configure.base_config import parse_config
+from baseParser.control import check
+from baseParser.write_read import read_rows
+from baseParser.control import Proxy
+
 from Yarche.configure.config import Config, get_config
-from concurrent.futures import ThreadPoolExecutor
+from Yarche.buld import ParseYarche
+    
 
 
-logger=get_logger(
-        __name__,
-        get_stream_handler(
-            loggin_level=logging.DEBUG
-            ))
+logger = get_logger(
+    name=__name__,
+    handlers=[get_stream_handler(
+        loggin_level=logging.DEBUG,
+        log_format=f"%(asctime)s - %(name)s - %(levelname)s - %(message)s (%(filename)s:%(lineno)d)"
+            )])
+
 
 
 def main(configureFile:str):
-    logger.warning("Сатана")
-    config = get_config(
+    logger.info("Программа стартует")
+
+    config:Config = get_config(
         data=parse_config(pathfile=configureFile))
 
     logger.addHandler(
-        logging.FileHandler(
-            filename=config.system.pathFileLogging
-        )
+        hdlr=get_file_handler(pathfile=config.system.pathFileLogging, loggin_level=logging.DEBUG)
     )
-    print('ff')
-    logger.info("Сатана")
+    logging.info("Создан лог для записи")
 
-  
-
-
- 
-
-
-
-
-
-
-
+    if config.system.use_proxy:
+        proxy = Proxy(
+            proxy=read_rows(
+                pathfile=config.system.pathFileProxy,
+                slice=slice(0, -1)
+            ))
+    else:
+        proxy = Proxy(proxy=None)
     
-    # конфиг получен
-    # if config.system.use_thread:
-    #     with ThreadPoolExecutor(
-    #         max_workers=config.system.thread
-    #     ) as pool:
-    #         for pool in 
+    parser = ParseYarche(
+        config=config,
+        proxy=proxy)
+    parser.CENTER()
     
+    
+
+
+   
+   
+    
+
+
+
 
     
   
 if __name__ == '__main__':
-    Parse.check(
+    check(
         func=main,
         logger=logger,
         configureFile=os.path.dirname(__file__) + '\configure\config.json'
     )
         
-    
+
+
+
+# Парсер Концепт 
+    # Cтарт
+    ### --- Рарсер
+    # Получение результата
