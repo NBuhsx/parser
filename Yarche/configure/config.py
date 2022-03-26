@@ -1,6 +1,6 @@
 import os
 from fake_useragent import UserAgent
-from dataclasses import dataclass, InitVar
+from dataclasses import dataclass, InitVar, field
 
 from baseParser.configure.datacls import settinngSystem
 
@@ -12,11 +12,16 @@ class Parser:
     base_url: str = 'https://yarcheplus.ru'
     headers:InitVar[bool] = False
     cookies:dict = None
+    Adress:list = field(default_factory=list)
+
 
     def __post_init__(self, headers):
        self.headers = headers if headers else {"User-Agent":UserAgent().random}  
     
     
+
+
+
 
 @dataclass
 class SendEmail:

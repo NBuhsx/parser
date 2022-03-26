@@ -10,12 +10,12 @@ from typing import Callable, Iterable, Union
 
 
 def get_session(url:str, headers:dict, proxy:Union[dict, None]=None):
-    print(proxy)
     session = requests.Session()
     session.headers = headers
     response = session.get(
             url=url,
-            proxies=proxy)
+            proxies=proxy,
+            verify=False)
     if response.status_code == 200:
         session.response = response.text
         return session

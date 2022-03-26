@@ -1,5 +1,5 @@
 import sys
-from typing import Callable, Union
+from typing import Callable, Iterable, Union
 
 
 
@@ -10,25 +10,22 @@ def check(func, logger:object, **kwargs):
         logger.exception(err)
         sys.exit()
 
-class Proxy:
-    def __init__(self, proxy=None) -> None:
-        if proxy:
-            self.proxy_pull = [self.standart_proxy(proxy=pr) for pr in proxy]
-        else:
-            self.proxy_pull = None
 
-        self.proxy_pull = 0
-
-    def get_proxy(self):
-        if self.proxy_pull:
-            proxy = self.proxy_pull[self.index_proxy_pool]
-            self.index_proxy_pool
-            return proxy
+class ProxyPull:
+    def __init__(self, proxies:Union[Iterable, None]=None, noProxy:int=3) -> None:
+        if proxies:
+            self.proxy_pull = [
+            {
+                'http':proxy,
+                'https':proxy} for proxy in proxies]
         else:
-            return False
+            self.proxy_pull = [None for _ in range(noProxy)]
+        self.count_proxy = len(self.proxy_pull)
+        self.index = 0
+
+    def getProxy(self):
+        return self.proxy_pull[self.index]
     
-    def standart_proxy(self, proxy):
-        return {
-            'http':proxy,
-            'https':proxy
-        }
+    def change(self):
+        self.index += 1
+        
