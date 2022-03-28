@@ -1,4 +1,5 @@
 import re
+import openpyxl
 
 
 from baseParser.parse import get_session
@@ -14,26 +15,47 @@ from Yarche.data_requesrt import (
 )
 
 
+class ParseError(Exception):
+    pass
+
 class ParseYarcheProductCategory:
     def __init__(self, config:Config, proxy:ProxyPull) -> None:
         self.config = config
         self.proxy = proxy
 
 
-    def CENTER(self):
+        self._soft={
+            0: self.build_session,
+            1: self.get_token,
+            2: self.get_coordinats,
+            3: self.set_adress,
+            4: self.parse_product_category
+        }
+    
+    def __call__(self, itap:int):
+        while itap < len(self._soft.keys()):
+            if self._soft.get(itap):
+                self._soft[itap]()
+            itap +=1 
+
+        
+
+        # self.build_session()
+        # self.get_token()
+        # self.get_coordinats()
+        # self.set_adress()
+        # self.check_category()
+        # self.parse_product_category()
+        # self.write()
+
+
+
+    def build_session(self):
         self.session = get_session(
             url=self.config.prod.base_url,
             headers=self.config.prod.headers,
             proxy=self.proxy.getProxy()
         )
-
-
-        self.get_token()
-        self.get_coordinats(adress=self.config.prod.Adress[0])
-        self.set_adress(adress=self.config.prod.Adress[0])
-        self.check_category()
-        self.parse_product_category()
-
 
     def get_token(self):
         self.tokens = {
@@ -49,11 +71,11 @@ class ParseYarcheProductCategory:
         }
 
 
-    def get_coordinats(self, adress:str):
+    def get_coordinats(self):
         response = self.session.post(
             url='https://geocoder.magonline.ru/api/graphql',
             headers={'token':self.tokens['geotoken']},
-            json=data_for_get_coordinat(adress=adress),
+            json=data_for_get_coordinat(adress=self.config.prod.Adress[0]),
             verify=False)
         if response.status_code == 200:
             self.coordinats = (
@@ -63,13 +85,13 @@ class ParseYarcheProductCategory:
         else:
             raise "Произошла ошибка при поиске координат"
     
-    def set_adress(self, adress:str):
+    def set_adress(self):
         response = self.session.post(
             url='https://geocoder.magonline.ru/api/graphql',
             headers={
                 "Host": "api.magonline.ru",
                 "token": self.tokens['token']},
-            json=data_for_set_adress(adress=adress, coordinats=self.coordinats),
+            json=data_for_set_adress(adress=self.config.prod.Adress[0], coordinats=self.coordinats),
             verify=False)
         print(response.text)
         if response.status_code == 200:
@@ -102,5 +124,25 @@ class ParseYarcheProductCategory:
                 verify=False)
             if response.status_code == 200:
                 self.before_category[index]['products'] = response.json()['data']['products']['list']
+                break
            
-               
+    
+    def errors(self):
+        self.er = {
+            'error': ParseError, 'func':(self.CENTER), 'kwargs':({'itap':-1}),
+            'error': ConnectionError, 'func':(self.proxy.getProxy, self.CENTER), 'kwargs':({'itap':-1})
+    }
+
+
+    def write(self):
+        wb = openpyxl.Workbook()
+        for index, catagory in enumerate(self.before_category):
+            ws = wb.create_sheet(title=catagory['name'], index=index)
+            for cat in [tuple(catagory.values())[:-1], tuple(catagory.keys())[:-1]]:
+                ws.append(str(cat))
+                ws.insert_rows(3, 2)
+            for product in [tuple(catagory['products'].values()), tuple(catagory['products'].keys())]:
+                ws.append(str(product))
+
+        wb.save("table.xlsx")   
+       

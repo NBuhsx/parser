@@ -10,7 +10,7 @@ class Parser:
    
     project_name: str = 'Ярче'
     base_url: str = 'https://yarcheplus.ru'
-    headers:InitVar[bool] = False
+    headers:InitVar[dict] = {}
     cookies:dict = None
     Adress:list = field(default_factory=list)
 

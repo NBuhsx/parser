@@ -30,6 +30,7 @@ def main(configureFile:str):
     config:Config = get_config(
         data=parse_config(pathfile=configureFile))
 
+    
     logger.addHandler(
         hdlr=get_file_handler(pathfile=config.system.pathFileLogging, loggin_level=logging.DEBUG)
     )
@@ -47,7 +48,9 @@ def main(configureFile:str):
     parser = ParseYarcheProductCategory(
         config=config,
         proxy=proxy)
-    parser.CENTER()
+
+    print(config.system.pathFileLogging)
+    # parser.CENTER()
     
     
 
@@ -61,10 +64,10 @@ if __name__ == '__main__':
         logger=logger,
         configureFile=os.path.dirname(__file__) + '\configure\config.json'
     )
-
-
+    
 # Парсер Концепт 
     # Cтарт
     ### --- Рарсер
     # Получение результата
+
 

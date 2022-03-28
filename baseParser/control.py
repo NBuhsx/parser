@@ -28,4 +28,3 @@ class ProxyPull:
     
     def change(self):
         self.index += 1
-        
