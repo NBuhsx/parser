@@ -1,73 +1,90 @@
-import imports
 
 
-import logging
-import os.path, sys
+from email import header
+from imports import logger
 
-from baseParser.logger.app_loggers import get_logger, get_file_handler, get_stream_handler
+import os.path
+import more_itertools
+
+from concurrent.futures import ThreadPoolExecutor
+
+
+
 from baseParser.configure.base_config import parse_config
-from baseParser.control import check
-from baseParser.write_read import read_rows
+from baseParser.write_read import read_rows, read_json
 from baseParser.control import ProxyPull
 
 from Yarche.configure.config import Config, get_config
-from Yarche.buld import ParseYarcheProductCategory
-    
-
-
-logger = get_logger(
-    name=__name__,
-    handlers=[get_stream_handler(
-        loggin_level=logging.DEBUG,
-        log_format=f"%(asctime)s - %(name)s - %(levelname)s - %(message)s (%(filename)s:%(lineno)d)"
-            )])
+from Yarche.build.buld import ParseYarcheProductCategory
 
 
 
-def main(configureFile:str):
+
+def main(configureFile):
     logger.info("Программа стартует")
 
     config:Config = get_config(
         data=parse_config(pathfile=configureFile))
-
     
-    logger.addHandler(
-        hdlr=get_file_handler(pathfile=config.system.pathFileLogging, loggin_level=logging.DEBUG)
-    )
-    logging.info("Создан лог для записи")
+    logger.add(
+        config.system.pathFileLogging,
+        backtrace=True, diagnose=True)
+    logger.info('Получен конфиг')
+    
 
+
+
+    # Proxy 
     if config.system.use_proxy:
-        proxy = ProxyPull(
-            proxies=read_rows(
-                pathfile=config.system.pathFileProxy,
-                slice=slice(0, -1)
-            ))
+        proxy = read_rows(
+                        pathfile=config.system.pathFileProxy,
+                        slice=slice(0, -1))
     else:
-        proxy = ProxyPull(noProxy=1)
+        proxy = []
+
     
-    parser = ParseYarcheProductCategory(
-        config=config,
-        proxy=proxy)
+    # Потоки
+    if config.system.use_thread:
+        logger.info("Запуск многопоточного режима")
+        with ThreadPoolExecutor(max_workers=config.system.thread) as pool:
+            for arg_pool in zip(
+                more_itertools.divide(config.system.thread, config.prod.Adress),
+                more_itertools.divide(config.system.thread, proxy)):
 
-    print(config.system.pathFileLogging)
-    # parser.CENTER()
-    
-    
+                config.prod.Adress = iter(arg_pool[0])
 
+                pool.submit(
+                    fn=ParseYarcheProductCategory(
+                        config=config,
+                        proxy=ProxyPull(proxies=arg_pool[1])).center, itap=1)
+    else:
+        logger.info("Запуск однопоточного режима")
+        ParseYarcheProductCategory(
+            config=config,
+            proxy=ProxyPull(proxies=proxy)).center(itap=0)
+        
 
-   
+      
 
-  
+                
+            
+
 if __name__ == '__main__':
-    check(
-        func=main,
-        logger=logger,
-        configureFile=os.path.dirname(__file__) + '\configure\config.json'
+    main(
+        configureFile=os.path.dirname(__file__) + '\configure\config.json' 
     )
+    # category = read_json(
+    #     pathfile=r'C:\Users\ole lukoie\Desktop\my_parser\Yarche\result\result_Россия, Москва, Вересаева 10.json',
+    # )
+  
+
+      
+
+ 
+      
     
-# Парсер Концепт 
-    # Cтарт
-    ### --- Рарсер
-    # Получение результата
+    # ParseYarcheProductCategory.result_csv(category)
 
-
+    
+ 
+ 

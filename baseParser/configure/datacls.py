@@ -7,6 +7,8 @@ from typing import Union
 
 
 
+
+
 @dataclass
 class settinngSystem:
     use_thread:bool = False
@@ -15,22 +17,41 @@ class settinngSystem:
     pathFileProxy:InitVar[str] = 'defaut'
     logging:bool = True 
     pathFileLogging:InitVar[str] = 'defaut'
+    pathDirResult:InitVar[str] = 'defaut'
 
-    def __post_init__(self, pathFileProxy:Union[str, bool], pathFileLogging:Union[str, bool]):
-        if self.use_proxy:
-            self.self.pathFileProxy = os.path.abspath(os.path.dirname(sys.argv[0])) + \
-                    r'\proxy\use.txt' if pathFileProxy == 'defaut' else pathFileProxy
-          
+    def __post_init__(self, 
+            pathFileProxy:Union[str, bool], 
+            pathFileLogging:Union[str, bool],
+            pathDirResult:Union[str, bool]):
+
+        pathDIR = os.path.abspath(os.path.dirname(sys.argv[0]))
+
         if self.logging:
-            if pathFileLogging == 'defaut':
-                if not os.path.exists(os.path.abspath(os.path.dirname(sys.argv[0])) + '\logs'):
-                    os.mkdir(os.path.abspath(os.path.dirname(sys.argv[0])) + '\logs')
+            self.pathFileLogging = self.def_on(
+                variable=pathFileLogging,
+                pathDir=pathDIR + '\logs',
+                file=f'\log_{datetime.now().strftime("%d-%m-%Y %H.%M")}.log')
+        
+        if self.use_proxy:
+            self.pathFileProxy = self.def_on(
+                variable=pathFileProxy,
+                pathDir=pathDIR + '\proxy',
+                file='use.txt'
+            )
+        
+        self.pathDirResult = self.def_on(
+                variable=pathDirResult,
+                pathDir=pathDIR + r'\result'
+            )
 
-                self.pathFileLogging =  os.path.abspath(os.path.dirname(sys.argv[0])) + \
-                    f'\logs\log_{datetime.now().strftime("%d-%m-%Y %H.%M")}.log'
-            else:
-                self.pathFileLogging = pathFileLogging
-           
+    def def_on(self, variable:str, pathDir:str, file:Union[str, int]=None):
+        if variable == 'defaut':
+            if not os.path.exists(pathDir):
+                os.mkdir(pathDir)
+            return pathDir + file if file else pathDir
+        else:
+            return variable
+              
 
 
 

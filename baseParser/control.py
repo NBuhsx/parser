@@ -1,14 +1,4 @@
-import sys
-from typing import Callable, Iterable, Union
-
-
-
-def check(func, logger:object, **kwargs):
-    try:
-        return func(**kwargs)
-    except Exception as err:
-        logger.exception(err)
-        sys.exit()
+from typing import Iterable, Union
 
 
 class ProxyPull:
@@ -18,13 +8,21 @@ class ProxyPull:
             {
                 'http':proxy,
                 'https':proxy} for proxy in proxies]
+            self._messg_error = 'Список прокси исчерпан' 
         else:
             self.proxy_pull = [None for _ in range(noProxy)]
-        self.count_proxy = len(self.proxy_pull)
-        self.index = 0
+            self._messg_error = 'Количестов попыток исчерпано'
+        self._index = -1
 
-    def getProxy(self):
-        return self.proxy_pull[self.index]
+    def __iter__(self):
+        return self
     
-    def change(self):
-        self.index += 1
+    def __next__(self):
+        try:
+            self._index += 1
+            return self.proxy_pull[self._index]
+        except IndexError:
+            raise StopIteration(self._messg_error)
+
+
+

@@ -5,7 +5,8 @@
         "use_proxy": false,
         "pathFileProxy": "defaut",
         "logging": true,
-        "pathFileLogging": "defaut"
+        "pathFileLogging": "defaut",
+        "pathDirResult":"defaut"
         
     },
     "Parser": {
@@ -15,6 +16,7 @@
         "cookies":{},
         "Adress":[
             "Россия, Москва, Вересаева 10"
+
         ]
     }
 }

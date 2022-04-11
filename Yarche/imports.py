@@ -1,3 +1,4 @@
+from loguru import logger
 import os.path, sys
 
 
@@ -10,3 +11,7 @@ def _():
 
 
 _()
+
+from baseParser.logger.app_loggers import config
+
+logger.configure(**config)

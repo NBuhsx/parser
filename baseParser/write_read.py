@@ -1,6 +1,7 @@
 import re, more_itertools
-
-from typing import Iterable, Optional
+from statistics import mode
+import json
+from typing import Iterable, Optional, Union
 
 
 
@@ -19,3 +20,13 @@ def write_file_str(pathfile:str, write:str, mode:str='a', encoding:str='utf-8', 
     """ Записывает не итерабельный тип данных(строку) """
     with open(file=pathfile, mode=mode, encoding=encoding) as file:
         file.write(write + '\n') if addN else file.write(write)
+
+
+def write_json(pathFile:str, jsonObject:Union[dict, list], ensure_ascii:bool=False, indent:int=3):
+    """ Пишет Json"""
+    with open(file=pathFile, mode='w', encoding='utf-8') as file:
+        json.dump(obj=jsonObject, fp=file, ensure_ascii=ensure_ascii, indent=indent)
+
+def read_json(pathfile:str, mode:str='r', encoding:str='utf-8'):
+    with open(file=pathfile, mode=mode, encoding=encoding) as file:
+        return json.load(fp=file)
