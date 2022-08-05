@@ -1,0 +1,100 @@
+{
+  "title": "Config",
+  "type": "object",
+  "properties": {
+    "setting_system": {
+      "$ref": "#/definitions/settinngSystem"
+    },
+    "parser": {
+      "$ref": "#/definitions/Parser"
+    }
+  },
+  "required": [
+    "setting_system",
+    "parser"
+  ],
+  "definitions": {
+    "settinngSystem": {
+      "title": "settinngSystem",
+      "type": "object",
+      "properties": {
+        "use_thread": {
+          "title": "Use Thread",
+          "description": "Use thread",
+          "default": false,
+          "type": "boolean"
+        },
+        "thread": {
+          "title": "Thread",
+          "description": "Count thread",
+          "default": 1,
+          "minimum": 1,
+          "maximum": 100,
+          "type": "integer"
+        },
+        "use_proxy": {
+          "title": "Use Proxy",
+          "description": "Use proxies",
+          "default": false,
+          "type": "boolean"
+        },
+        "path_file_proxy": {
+          "title": "Path File Proxy",
+          "description": "Path proxy file",
+          "default": "/proxy/proxies.txt",
+          "format": "file-path",
+          "type": "string"
+        },
+        "logging": {
+          "title": "Logging",
+          "description": "Logging",
+          "default": true,
+          "type": "boolean"
+        },
+        "path_dir_logging": {
+          "title": "Path Dir Logging",
+          "description": "Logging dir",
+          "default": "Yarche/logs",
+          "format": "directory-path",
+          "type": "string"
+        },
+        "path_dir_result": {
+          "title": "Path Dir Result",
+          "description": "Result dir",
+          "default": "Yarche/result",
+          "format": "directory-path",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Parser": {
+      "title": "Parser",
+      "type": "object",
+      "properties": {
+        "project_name": {
+          "title": "Project Name",
+          "default": "\u042f\u0440\u0447\u0435",
+          "type": "string"
+        },
+        "headers": {
+          "title": "Headers",
+          "description": "headers on session",
+          "default": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 OPR/83.0.4254.27"
+          },
+          "type": "object"
+        },
+        "parse_adress": {
+          "title": "Parse Adress",
+          "description": "shipping or store address",
+          "default": [
+            "\u0420\u043e\u0441\u0441\u0438\u044f, \u041c\u043e\u0441\u043a\u0432\u0430, \u041f\u0435\u0442\u0440\u043e\u0432\u043a\u0430 1"
+          ],
+          "type": "array",
+          "items": {}
+        }
+      }
+    }
+  }
+}
